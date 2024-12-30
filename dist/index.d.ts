@@ -48,6 +48,7 @@ export declare class Conversation {
     private currentEventId;
     private lastFeedbackEventId;
     private canSendFeedback;
+    isMuted: boolean;
     private constructor();
     endSession: () => Promise<void>;
     private updateMode;
@@ -69,5 +70,6 @@ export declare class Conversation {
     getInputVolume: () => number;
     getOutputVolume: () => number;
     sendFeedback: (like: boolean) => void;
+    interrupt: () => Promise<void>;
 }
 export declare function postOverallFeedback(conversationId: string, like: boolean, origin?: string): Promise<Response>;
