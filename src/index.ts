@@ -109,7 +109,7 @@ export class Conversation {
   private lastFeedbackEventId: number = 1;
   private canSendFeedback: boolean = false;
 
-  public isMuted: boolean = false;
+  // public isMuted: boolean = false;
 
   private constructor(
     private readonly options: Options,
@@ -315,7 +315,7 @@ export class Conversation {
     // check if the sound was loud enough, so we don't send unnecessary chunks
     // then forward audio to websocket
     //if (maxVolume > 0.001) {
-    if (this.status === "connected" && !this.isMuted) {
+    if (this.status === "connected") {
       this.connection.sendMessage({
         user_audio_chunk: arrayBufferToBase64(rawAudioPcmData.buffer),
         //sample_rate: this.inputAudioContext?.inputSampleRate || this.inputSampleRate,
@@ -425,9 +425,9 @@ export class Conversation {
     this.updateCanSendFeedback();
   };
 
-  public interrupt = () => {
-    return this.fadeOutAudio();
-  };
+  // public interrupt = () => {
+  //   return this.fadeOutAudio();
+  // };
 }
 
 export function postOverallFeedback(
